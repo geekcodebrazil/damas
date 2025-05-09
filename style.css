@@ -1,0 +1,362 @@
+/* --- Reset Básico e Modelo de Caixa --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Variáveis de Cor (Tema Escuro Neon) --- */
+:root {
+    --bg-gradient-start: #1a1a2e; /* Azul noite profundo */
+    --bg-gradient-end: #16213e;   /* Azul escuro mais vibrante */
+    --text-primary: #e0e0ff;     /* Texto principal: Lavanda claro */
+    --text-secondary: #a0a0cc;   /* Texto secundário: Cinza azulado claro */
+    --accent-green: #50fa7b;     /* Verde neon (Geek) */
+    --accent-pink: #ff79c6;      /* Rosa neon (Code) */
+    --accent-purple: #bd93f9;    /* Roxo claro (Links, Hover) */
+    --accent-yellow: #f1fa8c;    /* Amarelo claro (Destaque de movimento) */
+    --dark-gray-1: #44475a;      /* Cinza escuro (Quadrados escuros, Fundo de elementos) */
+    --dark-gray-2: #6272a4;      /* Cinza médio (Quadrados claros, Bordas, Separadores) */
+    --container-bg: rgba(40, 42, 54, 0.88); /* Fundo do container principal (Dracula BG com mais opacidade) */
+    --shadow-color: rgba(189, 147, 249, 0.25); /* Sombra roxa suave (Accent Purple com alpha) */
+    --highlight-bg: rgba(241, 250, 140, 0.6); /* Amarelo neon transparente (Accent Yellow com alpha) */
+    --selected-bg: rgba(189, 147, 249, 0.5);  /* Roxo claro transparente (Accent Purple com alpha) */
+
+    --board-size: 8;
+    --board-max-width: 480px; /* Largura máxima do tabuleiro */
+}
+
+/* --- Estilos Globais e Body --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 10px;
+    overflow-x: hidden; /* Evita scroll horizontal acidental */
+}
+
+/* --- Container Principal e Conteúdo --- */
+.main-content {
+    flex: 1; /* Ocupa espaço vertical disponível */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.game-container {
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 500px; /* Largura máxima do container do jogo */
+    border: 1px solid var(--dark-gray-2);
+}
+
+/* --- Seção Superior (Título, Opções, Placar) --- */
+.top-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 12px;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-primary);
+    margin: 0 0 5px 0;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Estilos para as partes coloridas do título */
+h1 .geek {
+    color: var(--accent-green);
+    text-shadow: 0 0 5px var(--accent-green);
+}
+
+h1 .code {
+    color: var(--accent-pink);
+    text-shadow: 0 0 5px var(--accent-pink);
+}
+
+.options-scores-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 15px 20px;
+    font-size: 0.9em;
+    border-top: 1px solid var(--dark-gray-2);
+    border-bottom: 1px solid var(--dark-gray-2);
+    padding: 10px 0;
+}
+
+#game-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#game-options label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+#difficulty-select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--dark-gray-2);
+    background-color: var(--dark-gray-1);
+    color: var(--text-primary);
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#difficulty-select:hover,
+#difficulty-select:focus {
+    border-color: var(--accent-purple);
+    background-color: var(--dark-gray-2);
+    outline: none; /* Remove outline padrão no focus */
+}
+
+#difficulty-select:focus {
+     box-shadow: 0 0 0 2px var(--accent-purple); /* Adiciona anel roxo no focus */
+}
+
+
+#score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+}
+
+.score-item strong {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.score-count {
+    font-size: 1.6em;
+    color: var(--text-primary);
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    min-width: 2ch; /* Garante espaço para números de 2 dígitos */
+    display: inline-block; /* Necessário para min-width */
+    text-align: center;
+}
+/* Cores específicas para contagem */
+#player-score { color: var(--accent-green); }
+#machine-score { color: var(--accent-pink); }
+
+
+#game-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.info-box {
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: var(--dark-gray-1);
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 0.85em;
+    border: 1px solid var(--dark-gray-2);
+}
+
+.info-box strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+/* Cores dos indicadores de jogador/máquina */
+.player-color-indicator {
+    color: var(--accent-green);
+    font-weight: bold;
+}
+.machine-color-indicator {
+    color: var(--accent-pink);
+    font-weight: bold;
+}
+
+/* --- Tabuleiro (Canvas) --- */
+.canvas-container {
+    width: 100%;
+    max-width: var(--board-max-width);
+    margin: 0 auto;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 3px solid var(--dark-gray-2);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3) inset; /* Sombra interna sutil */
+    background-color: var(--dark-gray-1); /* Cor de fundo de fallback */
+}
+
+/* --- Rodapé --- */
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 20px 10px;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--dark-gray-2);
+}
+
+.footer-links {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px 15px;
+}
+
+footer a {
+    color: var(--accent-purple);
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--accent-pink);
+    text-shadow: 0 0 3px var(--accent-pink);
+}
+
+footer span { /* Separadores "|" */
+    color: var(--dark-gray-2);
+    margin: 0 5px;
+    user-select: none; /* Evita seleção do separador */
+}
+
+/* Estilo específico para os links Geek Code no rodapé */
+footer .geek {
+    color: var(--accent-green);
+    font-weight: bold;
+}
+footer .code {
+    color: var(--accent-pink);
+    font-weight: bold;
+}
+footer a:hover .geek {
+    text-shadow: 0 0 5px var(--accent-green);
+}
+footer a:hover .code {
+    text-shadow: 0 0 5px var(--accent-pink);
+}
+
+.copyright {
+    font-size: 0.8em;
+}
+.copyright .geek, .copyright .code {
+    font-weight: normal; /* Copyright não precisa ser negrito */
+}
+
+
+/* --- Responsividade --- */
+
+/* Telas Médias (Tablets pequenos, celulares grandes) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    .game-container {
+        padding: 15px 20px;
+        max-width: 95%;
+    }
+    .options-scores-info {
+        gap: 10px 15px;
+        font-size: 0.85em;
+        padding: 8px 0;
+    }
+    .score-count {
+        font-size: 1.4em;
+    }
+    footer {
+        font-size: 0.8em;
+        padding: 15px 10px;
+    }
+    .footer-links {
+        gap: 5px 10px;
+    }
+}
+
+/* Telas Pequenas (Celulares) */
+@media (max-width: 420px) {
+    body {
+        padding: 5px;
+    }
+     .main-content {
+        padding: 10px 0;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    .game-container {
+        padding: 10px 15px;
+    }
+    .top-section {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    .options-scores-info {
+        /* Empilha os itens e centraliza */
+        flex-direction: column;
+        align-items: center; /* Alinha itens ao centro quando em coluna */
+        gap: 12px;
+        font-size: 0.8em;
+        text-align: center;
+    }
+    /* Garante que itens empilhados mantenham layout razoável */
+    #game-options, #score-board, #game-info {
+        justify-content: center;
+        width: auto; /* Não força 100% para não parecer estranho */
+    }
+     #game-info {
+        gap: 10px; /* Reduz gap entre info boxes */
+    }
+    .score-count {
+        font-size: 1.3em;
+    }
+    #difficulty-select {
+        padding: 5px 8px;
+    }
+    footer {
+        font-size: 0.75em;
+        margin-top: 20px;
+    }
+     .footer-links {
+        gap: 5px 8px;
+    }
+     footer span {
+        margin: 0 3px;
+    }
+}

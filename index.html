@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Damas Moderno - Geek Code</title>
+    <!-- Importar a fonte Orbitron -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Container principal para layout flex e empurrar rodapé -->
+    <div class="main-content">
+
+        <div class="game-container">
+            <div class="top-section">
+                <!-- Título com spans para estilo -->
+                <h1><span class="geek">Damas</span> <span class="code">Code</span></h1>
+                <div class="options-scores-info">
+                    <!-- Opções de Dificuldade -->
+                    <div id="game-options">
+                        <label for="difficulty-select">Dificuldade:</label>
+                        <select id="difficulty-select">
+                            <option value="easy">Fácil</option>
+                            <option value="medium" selected>Médio</option>
+                            <option value="hard">Difícil</option>
+                        </select>
+                    </div>
+                    <!-- Placar -->
+                    <div id="score-board">
+                        <div class="score-item">
+                            <strong>Você</strong>
+                            <span id="player-score" class="score-count">0</span>
+                        </div>
+                        <div class="score-item">
+                            <strong>Máquina</strong>
+                            <span id="machine-score" class="score-count">0</span>
+                        </div>
+                    </div>
+                    <!-- Informações de Cor -->
+                    <div id="game-info">
+                        <div class="info-box">
+                            <strong>Você:</strong> <span class="player-color-indicator">Verde</span>
+                        </div>
+                        <div class="info-box">
+                            <strong>Máquina:</strong> <span class="machine-color-indicator">Rosa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container do Canvas (Tabuleiro) -->
+            <div class="canvas-container">
+                <canvas id="damasCanvas"></canvas>
+            </div>
+        </div>
+
+    </div> <!-- Fim de .main-content -->
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-links">
+            <a href="#privacy" rel="noopener noreferrer">Privacidade</a>
+            <span>|</span>
+            <a href="#services" rel="noopener noreferrer">Serviços</a>
+            <span>|</span>
+            <a href="#about" rel="noopener noreferrer">Sobre</a>
+            <span>|</span>
+            <a href="#terms" rel="noopener noreferrer">Termos</a>
+            <span>|</span>
+            <a href="index.html" rel="noopener noreferrer">Início</a>
+            <span>|</span>
+            <!-- ATUALIZE ESTE LINK para o seu GitHub -->
+            <a href="https://github.com/seu-usuario-github" target="_blank" rel="noopener noreferrer">Desenvolvido por <span class="geek">GΞΞK</span><span class="code"> CΦDΞ</span></a>
+        </div>
+        <p class="copyright">© <span id="current-year"></span> <span class="geek">GΞΞK</span><span class="code"> CΦDΞ</span>. Todos os direitos reservados.</p>
+    </footer>
+    <!-- FIM DO RODAPÉ -->
+
+    <!-- Link para o arquivo JavaScript externo (defer garante que o HTML seja carregado primeiro) -->
+    <script src="script.js" defer></script>
+</body>
+</html>
